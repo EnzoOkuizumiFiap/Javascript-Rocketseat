@@ -154,3 +154,77 @@ console.log(data2); // Exibe o array de objetos data
 // Utilizando o spread no array com objetos 
 console.log(...data2); // Exibe os objetos do array data de forma individual, sem o array.
 
+
+
+
+
+// #F0427 2_Método map()
+
+// Método map() chama a função callback recebida por parâmetro para cada elemento do Array original, em ordem, e constrói um novo array com base nos retornos de cada chamada. E no final, devolve o novo array.
+const products = ["Teclado", "Mouse", "Monitor"];
+
+// Percorrendo itens do array - para cada item que existe no array, ele executa a função
+products.map((product) => {
+    console.log(product);
+});
+
+// Sintaxe Reduzida
+products.map((product) => console.log(product));
+
+
+// Utilizando o novo objeto retornado
+const formatted = products.map((product) => {
+    //let CaixaAlta = product.toUpperCase();
+    
+    return {
+        id: Math.random().toFixed(2),
+        description: product,
+        CaixaAlta: product.toUpperCase(),
+    }
+});
+
+console.log(formatted);
+
+
+
+
+
+// #F0428 3_Método filter()
+
+// Método filter() cria um novo array com todos os elementos que passaram na condição
+
+const words = ["Javascript", "HTML", "CSS", "Web"];
+
+// Filtrando paalvras que tenham mais do que 3 letras
+const result = words.filter((word) => word.length > 3);
+console.log(result);
+
+// Array de Objetos 
+const products2 = [
+    {description: "Teclado", price: 150, promotion: true},
+    {description: "Mouse", price: 70, promotion: false},
+    {description: "Monitor", price: 900, promotion: true},
+]
+
+// Exemplo de um filtro de produtos na promoção
+const promotion = products2.filter((product) => product.promotion === true);
+const priceVerification = products2.filter((product) => product.price < 100);
+console.log(promotion);
+console.log(priceVerification);
+
+
+
+
+
+// #F0429 4_Método findIndex()
+
+// Método findIndex() retorna o índice no array do primeiro elemento que satisfazer a condição. Caso contrário, retorna -1, indicando que nenhum elemento passou no teste.
+
+const values2 = [4, 6, 8, 12];
+
+// Obtendo o primeiro índice do elemento que o valor é maior do que 4
+const index = values2.findIndex((value) => value > 4);
+console.log(index);
+
+// Exemplo quando não encontra
+console.log(values2.findIndex((value) => value > 12));
