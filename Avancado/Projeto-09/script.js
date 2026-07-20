@@ -199,7 +199,7 @@ const words = ["Javascript", "HTML", "CSS", "Web"];
 const result = words.filter((word) => word.length > 3);
 console.log(result);
 
-// Array de Objetos 
+// Array de Objetos - Relembrando: [ ] - Array, { } - Objeto
 const products2 = [
     {description: "Teclado", price: 150, promotion: true},
     {description: "Mouse", price: 70, promotion: false},
@@ -225,6 +225,104 @@ const values2 = [4, 6, 8, 12];
 // Obtendo o primeiro índice do elemento que o valor é maior do que 4
 const index = values2.findIndex((value) => value > 4);
 console.log(index);
+console.log(values2[index]);
 
 // Exemplo quando não encontra
-console.log(values2.findIndex((value) => value > 12));
+console.log(values2.findIndex((values2) => values2 > 12));
+
+
+
+
+
+// #F0430 5_Método find()
+
+// Método find() retorna o valor do primeiro elemento do array que satisfizer a condição. Caso contrário, undefnied é retornado.
+
+const values3 = [5, 12, 8, 130, 44];
+
+// Retorna o primeiro elemento que valor é maior que 10
+const found = values3.find((value) => value > 10); 
+console.log(found);
+
+
+// Exemplo com objetos 
+const fruits2 = [
+    {name: "apple", quantity: 23},
+    {name: "banana", quantity: 25},
+    {name: "orange", quantity: 52},
+]
+
+const result2 = fruits2.find((fruit) => fruit.name === "banana");
+console.log(result2);
+
+/*
+    Por que temos que fazer isso .find((paramêtro) => { corpo da função }) ??
+    fruits2.find((fruit) => fruit.name === "banana"); <- Callback, que é uma função passada como parâmetro para outra função.
+    
+    (Em métodos de array, o próprio método chama essa função para cada item e usa o retorno para decidir o que fazer.)
+    Aqui, o find (Ele percorre todo o array) chama essa arrow function para cada item e usa o retorno true/false para decidir se encontrou o elemento.
+*/
+
+
+
+
+
+// #F0431 6_Método every()
+
+// Método every() testa se TODOS os elementos do array passam na condição e retorna um valor Boolean.
+
+
+// Exemplo de array de idades
+const ages = [15, 30, 39, 29];
+
+// Verificamos se todas as idades são maiores ou igual a 18
+const result3 = ages.every((age) => age >= 18); // () => Usa callback
+console.log(result3);
+
+
+
+
+
+// #F0432 7_Método some()
+
+// Método some() testa se ao menos UM dos elementos no array passa na condição e retorna um valor true ou false
+
+
+// Exemplo de array de idades
+const result4 = ages.some((age) => age < 18);
+console.log(result4);
+
+
+
+
+
+// #F0433 8_Método reduce()
+
+
+/*
+    Método reduce() é utilizado para reduzir um array a um único valor
+
+    Parâmetros:
+    - Array original (values)
+    - Acumulator (acumulador) -> Guardando o valor atual
+    - Valor da iteração (currentValue)
+    - Valor Inicial (0)
+    - Index (index da iteração atual - opcional) 
+*/
+
+const values4 = [1, 2, 3, 4, 5];
+
+const sum = values4.reduce((accumulator, currentValue, index) => {
+    console.log("INDEX:", index);
+    console.log("ACUMULADOR:", accumulator);
+    console.log("VALOR ATUAL:", currentValue);
+
+    console.log(`SOMA ${accumulator} + ${currentValue}:`, accumulator + currentValue);
+    console.log("=====================================");
+
+    return accumulator + currentValue;
+}, 10) // <- Valor inicial (defini 10 para mostrar que é o accumulator que guarda o valor inicial e faz as operações, currentValue pega os valores do array)
+
+// Resumindo, o reduce() vai percorrer o array values4 e para cada elemento, ele vai somar o valor do acumulador com o valor atual (currentValue) e retornar o resultado da soma. E no final, colocamos isso em uma variável (sum) que vai retornar o valor final da soma de todos os elementos do array.
+console.log("RESULTADO DA SOMA FINAL: " + sum);
+
