@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { scheduleNew } from "../../services/schedule-new";
 
 const form = document.querySelector("form");
 const selectedDate = document.getElementById("date");
@@ -11,7 +12,8 @@ const inputToday = dayjs(new Date()).format("YYYY-MM-DD");
 selectedDate.value = inputToday;
 selectedDate.min = inputToday;
 
-form.onsubmit = (event) => {
+// #F0506 8_Enviando um horário selecionado para a API
+form.onsubmit = async (event) => {
     event.preventDefault(); // Previne o comportamento padrão do formulário
 
     try {
@@ -38,6 +40,12 @@ form.onsubmit = (event) => {
         // Gera um ID
         const id = new Date().getTime();
 
+        // #F0510 3_Registrando um novo agendamento na API
+        await scheduleNew({ 
+            id, 
+            name, 
+            when
+        });
 
     } catch (error) {
         alert("Não foi possível realizar o agendamento.");

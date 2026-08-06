@@ -12,7 +12,7 @@ export function hoursLoad({ date }) {
     // #F0502 4_Carregando os horários
     const opening = openingHours.map((hour) => {
         // Recuperar somente a hora.
-        const [scheduleHour] = hour.split(":");
+        const [scheduleHour] = hour.split(":"); // Desestruturação do array para pegar somente a hora. Tipo: ["9", "00"] => scheduleHour = "9"
 
         // Adicionando a hora na date e verificar se está no passado.
         const isHourAvailable = dayjs(date).add(scheduleHour, "hour").isAfter(dayjs());
@@ -21,6 +21,7 @@ export function hoursLoad({ date }) {
             hour,
             available: isHourAvailable
         }
+        // Retorno é assim: { hour: "9:00", available: true } ou { hour: "9:00", available: false }
     });
 
     // #F0503 5_Renderizando os horários

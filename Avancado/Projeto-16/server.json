@@ -1,3 +1,9 @@
 {
-    "schedules": []
+  "schedules": [
+    {
+      "id": 1785978713874,
+      "name": "Enzo Okuizumi",
+      "when": "2026-08-06T13:00:00.000Z"
+    }
+  ]
 }
