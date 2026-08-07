@@ -5,9 +5,13 @@ import { hoursClick } from "./hours-click.js";
 // No caso, hours é a ul que contém todos os horários disponíveis.
 const hours = document.getElementById("hours");
 
-export function hoursLoad({ date }) {
+export function hoursLoad({ date, dailySchedules }) {
     // Limpa a lista de horários
     hours.innerHTML = "";
+
+    // #F0513 6_Renderizando os agendamentos do dia
+    // Obtém a lista de todos os horários ocupados.
+    const unavailableHours = dailySchedules.map((schedule) => dayjs(schedule.when).format("HH:mm"));
     
     // #F0502 4_Carregando os horários
     const opening = openingHours.map((hour) => {
@@ -17,9 +21,11 @@ export function hoursLoad({ date }) {
         // Adicionando a hora na date e verificar se está no passado.
         const isHourAvailable = dayjs(date).add(scheduleHour, "hour").isAfter(dayjs());
 
+        const available = !unavailableHours.includes(hour) && isHourAvailable;
+
         return {
             hour,
-            available: isHourAvailable
+            available
         }
         // Retorno é assim: { hour: "9:00", available: true } ou { hour: "9:00", available: false }
     });

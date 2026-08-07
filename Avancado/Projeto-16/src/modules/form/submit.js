@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { scheduleNew } from "../../services/schedule-new";
+import { schedulesDay } from "../schedules/load";
 
 const form = document.querySelector("form");
 const selectedDate = document.getElementById("date");
@@ -41,11 +42,19 @@ form.onsubmit = async (event) => {
         const id = new Date().getTime();
 
         // #F0510 3_Registrando um novo agendamento na API
+        // Faz o agendamento.
         await scheduleNew({ 
             id, 
             name, 
             when
         });
+
+        // #F0515 8_Atualizando a lista de agendamentos
+        // Recarregando os agendamentos
+        await schedulesDay();
+
+        // Limpando o input de nome do cliente
+        clientName.value = "";
 
     } catch (error) {
         alert("Não foi possível realizar o agendamento.");
