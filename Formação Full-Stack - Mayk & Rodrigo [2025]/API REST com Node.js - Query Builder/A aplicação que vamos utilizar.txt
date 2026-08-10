@@ -1,1 +1,0 @@
-https://github.com/rocketseat-education/fullstack-query-builder-template

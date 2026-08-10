@@ -1,2 +1,0 @@
-Nessa aula vamos aprender sobre a propriedade para elementos filhos (items)
-grid-row que é shorthand para as propriedades grid-row-start e grid-row-end.

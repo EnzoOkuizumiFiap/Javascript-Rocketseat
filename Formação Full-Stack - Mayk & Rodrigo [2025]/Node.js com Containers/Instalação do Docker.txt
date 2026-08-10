@@ -1,2 +1,0 @@
-Após a instalação, é possível verificar a disponibilidade do Docker no terminal com comandos 
-como docker --version ou docker -v.
