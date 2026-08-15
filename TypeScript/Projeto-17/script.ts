@@ -156,7 +156,7 @@ let user2: { name: string, age: number, avatarUrl?: string } = {
 
 function signIn(email: string, password: string) {
     // Lógica de conectar o usuário na aplicação
-    console.log("Usuário: " + email, " e senha: ", password); 
+    console.log("Usuário: " + email, " e senha: ", password);
 }
 
 signIn("enzo@gmail.com", "123456");
@@ -213,3 +213,231 @@ response = null;
 
 // Tudo que usamos anteriormente foram TIPOS PRIMITIVOS!!
 
+
+
+
+
+// #F0532 2_Conhecendo interface no TypeScript
+
+interface Product {
+    id: number,
+    name: String,
+}
+
+// Usando uma tipagem com Interface
+function newProduct(product: Product) {
+    console.log(`ID: ${product.id} Nome Produto: ${product.name}`);
+}
+
+newProduct({ id: 1, name: "Produto X" });
+
+
+
+
+
+// #F0533 3_Como estender interfaces
+
+interface Person {
+    id: number,
+    name: string,
+}
+
+// Estendendo Person para pegar id e name
+interface Teacher extends Person {
+    subjects: string[]
+}
+
+interface Student extends Person {
+    age: number
+}
+
+let teacher: Teacher = { id: 1, name: "Enzo", subjects: ["Javascript", "Typescript"] };
+
+let student: Student = { id: 2, name: "João", age: 23 };
+
+console.log("Teacher: ", teacher.id, teacher.name, teacher.subjects);
+console.log("Student: ", student.id, student.name, student.age);
+
+
+
+
+
+// #F0534 4_Usando Type
+
+// Tipagem customizada
+type Product2 = {
+    id: number,
+    name: string,
+}
+
+function newProduct2(product: Product2) {
+
+}
+
+newProduct({ id: 1, name: "AAAAAAAAAAAAAA" });
+
+
+
+type SelectResponse = Product2[] | null;
+
+function selectProducts(): SelectResponse {
+    return null;
+}
+
+
+
+
+
+// #F0535 5_Intersecção de tipos
+
+type Person2 = {
+    id: number,
+    name: string
+}
+
+type Teacher2 = Person & {
+    subjects: string[]
+}
+
+type Student2 = Person & {
+    age: number
+}
+
+let teacher2: Teacher2
+let student2: Student2
+
+teacher2 = { id: 1, name: "Enzo", subjects: ["Javascript", "Typescript"] };
+student2 = { id: 2, name: "João", age: 23 };
+
+console.log("Teacher: ", teacher2.id, teacher2.name, teacher2.subjects);
+console.log("Student: ", student2.id, student2.name, student2.age);
+
+
+
+
+
+// #F0536 6_Diferença entre Type e Interface
+
+// Comparativo entre Interface e Type - O uso é igual! Só muda o fato que a Interface podemos estender e o Type atribuímos um alias (apelido)
+
+interface IBaseProduct {
+    price: number,
+}
+
+interface IProduct extends IBaseProduct {
+    id: number,
+    name: string,
+}
+
+// Podemos fazer duas interfaces com o mesmo nome, que serão unidas em uma só.
+interface IProduct {
+    quantity: number,
+}
+
+// No type a gente está atribuindo um alias (apelido) para o tipo de dado, mas não estamos criando um 
+// novo tipo de dado. Para fazer algo parecido como a interface, podemos usar a intersecção de tipos (&) 
+// para criar um novo tipo de dado que combina os tipos existentes.
+type TBaseProduct = {
+    price: number,
+}
+
+type TProduct = TBaseProduct & {
+    id: number,
+    name: string,
+}
+
+
+let product1: IProduct = { id: 1, name: "Produto 1", price: 10.99, quantity: 12 };
+let product2: TProduct = { id: 2, name: "Produto 2", price: 15.99 };
+
+// Em Type podemos atribuir um alias (apelido) para tipos primitivos
+type TypeString = string; 
+type TypeNumber = number;
+
+//interface TesteStrign extends string (); // Não é possível estender tipos primitivos como string, number, boolean, etc.
+
+
+
+
+
+// #F0537 7_Asserção de tipos
+
+// Fazer quanto o TS não sabe a tipagem de um objeto, então podemos informar a tipagem pra ele
+type UserResponse = {
+    id: number,
+    name: string,
+    avatar: string,
+}
+
+let userResponse = {} as UserResponse; // Fazendo uma asserção de tipo, dizendo que userResponse é do tipo UserResponse
+userResponse = { id: 1, name: "Enzo", avatar: "imagem.com" };
+
+console.log(userResponse.id, userResponse.name, userResponse.avatar);
+
+
+
+
+
+// #F0538 8_Restringindo valores
+type Size = "small" | "medium" | "large"; // Restringindo os valores possíveis para a variável size
+
+let size: Size;
+size = "small";
+
+console.log(size);
+
+
+
+
+
+// #F0539 9_Enums
+enum Profile {
+    Admin = 1,
+    Client = 2,
+    Seller = 3
+}
+
+let profile: number = Profile.Admin;
+console.log(profile); // 1
+
+
+
+
+
+// #F0540 10_Generic
+
+// Deixar a tipagem mais flexível, sem precisar criar várias funções para cada tipo de dado.
+// E também ao criar um Generic, ao definir ele sendo uma String, ele sempre vai ser uma String. Ele não muda de tipo.
+
+/* Convenções de nomes para representar Generics:
+ S => state
+ T => type
+ K => key
+ V => value
+ E => element
+*/
+
+function useState<T>() {
+    let state: T;
+
+    function get() {
+        return state;
+    }
+
+    function set(newValue: T) {
+        state = newValue;
+    }
+
+    return { get, set };
+}
+
+let newState = useState<string>();
+
+newState.set("Olá");
+newState.get();
+
+/* Agora que definimos o tipo como string, ele não deixa mais setar um número
+
+newState.set(123);
+newState.get();
+*/
