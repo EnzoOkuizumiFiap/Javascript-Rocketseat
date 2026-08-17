@@ -274,7 +274,7 @@ function newProduct2(product: Product2) {
 
 }
 
-newProduct({ id: 1, name: "AAAAAAAAAAAAAA" });
+newProduct2({ id: 1, name: "AAAAAAAAAAAAAA" });
 
 
 
@@ -351,7 +351,7 @@ let product1: IProduct = { id: 1, name: "Produto 1", price: 10.99, quantity: 12 
 let product2: TProduct = { id: 2, name: "Produto 2", price: 15.99 };
 
 // Em Type podemos atribuir um alias (apelido) para tipos primitivos
-type TypeString = string; 
+type TypeString = string;
 type TypeNumber = number;
 
 //interface TesteStrign extends string (); // Não é possível estender tipos primitivos como string, number, boolean, etc.
@@ -441,3 +441,134 @@ newState.get();
 newState.set(123);
 newState.get();
 */
+
+
+
+
+
+// #F0541 1_Utilitários do TypeScript
+
+// Manipular, transformar, reaproveitar os tipos!!
+
+
+
+
+
+// #F0542 2_Partial
+interface User {
+    id: number,
+    name: string,
+    email: string
+}
+
+const newUSer: User = { id: 1, name: "Enzo", email: "enzo@gmail.com" };
+
+// Partial<User> permite criar objetos onde todas as propriedades de User se tornam opcionais, então você pode atualizar só parte do usuário — por exemplo, apenas o name — sem precisar informar id ou email.
+const updatedUser: Partial<User> = { name: "Enzo Okuizumi" }
+
+
+
+
+
+// #F0543 3_Pick
+interface Book {
+    title: string,
+    pages: number,
+    author: string,
+    description: string
+}
+
+// Sem Pick
+interface BookPreview {
+    title: string
+}
+
+const bookPreview: BookPreview = { title: "Silo" };
+
+// Pick<Book, "title"> cria um novo tipo com apenas as propriedades que você escolheu. Isso é útil quando você quer trabalhar com um subconjunto específico do objeto.
+const book: Pick<Book, "title"> = { title: "Silo" };
+const book2: Pick<Book, "title" | "pages"> = { title: "Silo", pages: 300 };
+
+
+
+
+
+// #F0544 4_Omit
+// Utilizei a tipagem anterior Book
+
+// Omit<Book, "description" | "pages"> cria um tipo baseado em Book, mas remove as propriedades que você não quer. Isso ajuda a reutilizar modelos sem repetir toda a estrutura.
+const book3: Omit<Book, "description" | "pages"> = { title: "Silo", author: "Hugh Howey" };
+
+
+
+
+
+// #F0545 5_Record
+
+// Record<string, number> cria um objeto em que as chaves são strings e os valores são números. Isso é muito útil para mapear dados ou criar objetos com estrutura previsível.
+// Cria um objeto onde todas as chaves são string e os valores são números
+const scores: Record<string, number> = {
+    "Enzo": 10,
+    "Mayk": 15,
+}
+
+
+// Também podemos limitar os nomes das chaves com um tipo específico.
+type Profile2 = "admin" | "user" | "guest";
+
+const user4: Record<Profile2, number> = {
+    "admin": 1,
+    "guest": 2,
+    "user": 3
+}
+
+
+// Objetos personalizados
+interface User2 {
+    name: string,
+    email: string
+}
+
+const users: Record<number, User2> = {
+    1: { name: "Enzo", email: "enzo@gmail.com" },
+    2: { name: "Mayk", email: "mayk@gmail.com" },
+}
+
+
+
+
+
+// #F0546 6_Typeof
+interface Product3 {
+    id: number,
+    name: string,
+    quantity: number
+}
+
+
+const product3: Product3 = { id: 1, name: "Produto 1", quantity: 3 };
+
+// typeof pega o tipo de uma variável existente e reaproveita essa tipagem em outra variável. Isso evita repetir a estrutura manualmente.
+const product4: typeof product3 = { id: 2, name: "Produto 2", quantity: 5 };
+
+
+
+
+
+// #F0547 7_Keyof
+
+// Keyof para Extrair a chave do objeto e utilizar como tipagem
+const icons = {
+    "home": "./path/home.svg",
+    "add": "./path/add.svg",
+    "remove": "./path/remove.svg"
+}
+
+type Icon = typeof icons; // Pega o tipo do objeto icons
+const icon: keyof Icon = "add"; // Pega a chave do objeto icons, que são "home", "add" e "remove" e conseguimos inserir como string
+
+
+
+
+
+// #F0548 8_Concluindo o TypeScript
