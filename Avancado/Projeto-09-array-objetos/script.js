@@ -157,6 +157,21 @@ console.log(...data2); // Exibe os objetos do array data de forma individual, se
 
 
 
+/* MÉTODOS DE ARRAY EM JAVASCRIPT
+    
+    Métodos são funções associadas a objetos que permitem realizar ações específicas.
+    No caso dos arrays, esses métodos servem para manipular, transformar ou acessar seus elementos.
+    
+    Alguns dos métodos mais usados são:
+
+    - map(): cria um novo array aplicando uma função a cada elemento.
+    - filter(): retorna um novo array apenas com os elementos que atendem a uma condição.
+    - find(): retorna o primeiro elemento que satisfaz uma condição.
+    - findIndex(): retorna o índice do primeiro elemento que satisfaz uma condição.
+    - every(): verifica se todos os elementos atendem a uma condição (retorna true/false).
+    - some(): verifica se pelo menos um elemento atende a uma condição (retorna true/false).
+    - reduce(): reduz o array a um único valor, acumulando os resultados de uma função.
+*/
 
 // #F0427 2_Método map()
 
@@ -323,6 +338,7 @@ const sum = values4.reduce((accumulator, currentValue, index) => {
     return accumulator + currentValue;
 }, 10) // <- Valor inicial (defini 10 para mostrar que é o accumulator que guarda o valor inicial e faz as operações, currentValue pega os valores do array)
 
-// Resumindo, o reduce() vai percorrer o array values4 e para cada elemento, ele vai somar o valor do acumulador com o valor atual (currentValue) e retornar o resultado da soma. E no final, colocamos isso em uma variável (sum) que vai retornar o valor final da soma de todos os elementos do array.
+// Resumindo, o reduce() vai percorrer o array values4 e para cada elemento, ele vai somar o valor do acumulador com o valor atual (currentValue) e retornar o resultado da soma. 
+// E no final, colocamos isso em uma variável (sum) que vai retornar o valor final da soma de todos os elementos do array.
 console.log("RESULTADO DA SOMA FINAL: " + sum);
 

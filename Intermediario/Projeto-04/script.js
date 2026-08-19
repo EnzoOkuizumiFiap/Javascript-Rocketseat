@@ -79,10 +79,10 @@ console.log("Valor Alterado: Nome: " + product.name + ", Quantidade: " + product
 
 
 /*
-OPTIONAL CHAINING (?.) - Encadeamento opcional
-Se a propriedade ou função chamada é nullish (null ou undefined), a expressão retorna undefined em vez de gerar um erro.
+    OPTIONAL CHAINING (?.) - Encadeamento opcional
+    Se a propriedade ou função chamada é nullish (null ou undefined), a expressão retorna undefined em vez de gerar um erro.
 
-Útil ao explorar o conteúdo de um objeto quando não existe garantia da existência de determinadas propriedades obrigatórias.
+    Útil ao explorar o conteúdo de um objeto quando não existe garantia da existência de determinadas propriedades obrigatórias.
 */
 
 const user3 = {
@@ -175,7 +175,7 @@ product2.details();
 console.log(product1 === product2); // false, pois são objetos diferentes na memória
 
 
-// Exemplos de funções construtoras disponíeveis no próprio JavaScript
+// Exemplos de funções construtoras disponíveis no próprio JavaScript
 let myName = new String("Enzo");
 console.log(myName);
 
