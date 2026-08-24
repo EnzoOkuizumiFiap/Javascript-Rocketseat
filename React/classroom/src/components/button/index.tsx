@@ -1,3 +1,6 @@
+/* #F0976 4_CSS Modules */
+import styles from "./styles.module.css";
+
 type Props = {
     name: string,
     onClick?: () => void // Podemos passar métodos como propriedades para o componente, mas não é obrigatório, por isso o ? (opcional)
@@ -43,5 +46,16 @@ export function Button3({ name, onClick }: Props2) {
 export function Button4({ name, ...rest }: Props2) {
     return (
         <button {...rest}>{name}</button> 
+    );
+}
+
+
+
+// #F0976 4_CSS Modules
+export function Button5({ name, ...rest }: Props2) {
+    return (
+        <button className={styles.container} {...rest}>
+            <span>{name}</span>
+        </button> 
     );
 }
