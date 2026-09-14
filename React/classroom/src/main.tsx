@@ -1,6 +1,7 @@
 import { StrictMode } from 'react' // Strict Mode que vimos em JS
 import { createRoot } from 'react-dom/client' // DOM Virtual
 import { App } from './App.tsx'
+import { App2 } from './App2.tsx'
 
 /*
   #F0960 2_Conhecendo o React
@@ -17,6 +18,6 @@ import { App } from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <App2 />
   </StrictMode>,
 )

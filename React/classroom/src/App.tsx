@@ -1,6 +1,7 @@
 // #F0964 6_JSX
 // Componentes são basicamente funções que retornam HTML, mas podem ter lógica e estado.
 import { Button, Button2, Button3, Button4, Button5 } from "./components/button"
+import { useMessage } from "./hooks/useMessage";
 
 /* #F0975 3_CSS Global */
 import "./global.css"
@@ -9,12 +10,17 @@ import "./global.css"
 import styles from "./app.module.css"
 
 export function App() {
+    /* #F0980 3_Criando seu próprio Hook
+        Chamando o Hook useMessage e desestruturando a função show que está dentro do objeto retornado pelo Hook
+    */
+    const { show } = useMessage({ name: "Enzo", age: 19 }); // Passando como objeto e diretamente as propriedades (props) name e age para o Hook useMessage, que são desestruturadas dentro do Hook e utilizadas na função show! (Como Objeto, pois a ordem não importa)
+
     return (
         // #F0968 3_Retornando um Elemento Parent
         <div className={styles.container}> {/* div sendo o elemento pai e o que está dentro elementos filhos */}
             <h1>Hello, World!</h1>
 
-            
+
             {/* #F0969 4_Passando Propriedades Para O Componente */}
             <Button name="Criar" />
             <Button name="Editar" />
@@ -41,6 +47,14 @@ export function App() {
             <Button5 name="Adicionar" onClick={() => alert("Adicionar")} />
             <span>0</span>
             <Button5 name="Remover" onClick={() => alert("Remover")} />
+
+
+
+            {/* #F0980 3_Criando seu próprio Hook */}
+            <Button5
+                name="Adicionar"
+                onClick={() => show("Mensagem personalizada do meu Hook!")} // Passando a Mensagem Personalizada para -> Hook useMessage -> Passando especificamente para a Function show (Para um dos métodos do Hook useMessage)
+            />
         </div>
     );
 }

@@ -1,0 +1,63 @@
+/* #F0981 4_Estados e Renderizações
+
+Render -> Antes dos seus componentes serem exibidos na tela eles devem ser renderizados pelo React.
+
+IMAGINE: Imagine que seus COMPONENTES são COZINHEIROS (Componente Card) na cozinha montando pratos do restaurante a partir dos ingredientes (Propriedades Props).
+
+Nesse cenário o REACT é o GARÇOM que faz os pedidos dos clientes e entrega os seus pedidos.
+
+Esse processo tem 3 etapas:
+
+-> Acionar (Traz o pedido para os cozinheiros) 
+    - 1. Quando é a renderização inicial do Componente (Quando o componente é exibido na tela pela primeira vez)
+    - 2. O Estado do componente mudou (Atualização do estado do componente enfileira automaticamente uma renderização. Você pode imaginar o cliente do restaurante pedindo mais coisas)
+
+
+-> Renderizar (Prepara o prato conforme o pedido) 
+    - 1. Depois de acionar uma renderização, o React chama seus componentes para descobrir o que exibir na tela. (O Rendering é o React chamando seus componentes)
+    - 2. Na renderização inicial, o React chamará o componente raiz.
+    - 3. Para renderizações o React chamará o componente cuja atualização de estado acionou a renderização.
+
+    Esse processo é RECURSIVO. O componente também pode disparar um gatilho para renderizar algo em seguida, e assim por diante.
+    O processo continuará até que não haja mais componentes aninhados e o React saiba exatamente o que deve ser exibido na tela. (Por isso temos a DOM real e Virtual DOM para fazer em memória)
+
+
+-> Comprometer-se (Entrega o prato e atualiza a mesa)
+    - 1. Após renderizar (chamar) seus componentes, o React modificará o DOM.
+    - Para a renderização inicial, o React usará a API DOM para colocar todos os nós DOM criados na tela.
+    - Para re-renderizações, o React aplicará as operações mínimas necessárias (calculadas durante a renderização) para fazer o DOM corresponder à saída de renderização mais recente.  
+
+    O React só altera os nós se houver uma diferença entre as renderizações.
+
+Recapitulando:
+- Qualquer atualização de tela em um App React acontece em 3 etapas: Acionar, Renderizar e Comprometer-se. 
+- O React não toca no DOM se o resultado de renderização for o mesmo da última vez.
+
+*/
+
+
+
+/* #F0982 5_Compreendendo useEffect e useState
+
+    useEffect ->  Utilizado no ciclo de vida do componente e permite trabalhar com side-effects (efeitos colaterais)
+
+    useEffect precisa estar dentro de um componente!! Pois assim consegue ter acesso aos estados do componente!
+
+    
+    Exemplo:
+
+    export function MyComponent() {
+        const [name, setName] = useState(""); -> Retorna um array, sendo name o Estado de fato que podemos acessar e guardando o conteúdo / setName uma função para atualizar esse Estado! 
+
+        // NÃO podemos colocar um async/await (aí você faz isso dentro da função)
+        useEffect(() => {
+
+            searchByName(); -> Chamando essa função
+
+        }, [name]); -> Estados de dependência!! Renderizado toda vez que name mudar!
+
+        return (
+            ...
+        );
+    }
+*/
