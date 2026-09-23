@@ -5,7 +5,7 @@ type Props = {
     tip: string
 }
 
-export function Tip({ tip }: Props) {
+export default function Tip({ tip }: Props) {
     return (
         <div className={styles.tip}>
             <img src={tipIcon} alt="ícone de dica" />

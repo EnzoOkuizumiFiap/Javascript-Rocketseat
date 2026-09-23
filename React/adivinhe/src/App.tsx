@@ -1,6 +1,10 @@
 import Header from "./components/Header";
 import styles from './app.module.css';
-import { Tip } from "./components/Tip";
+import Tip from "./components/Tip";
+import Letter from "./components/Letter";
+import Input from "./components/Input";
+import Button from "./components/Button";
+import LettersUsed from "./components/LettersUsed";
 
 export default function App() {
 
@@ -11,7 +15,20 @@ export default function App() {
     return (
         <div className={styles.container}>
             <Header current={5} max={10} onRestart={handleRestartGame} />
+
             <Tip tip="Uma das linguagens de programação mais utilizadas" />
+
+            <div className={styles.word}>
+                <Letter value="R" />
+            </div>
+
+            <h4>Palpite</h4>
+            <div className={styles.guess}>
+                <Input autoFocus maxLength={1} placeholder="?" />
+                <Button title="Confirmar" />
+            </div>
+
+            <LettersUsed />
         </div>
     )
 }
