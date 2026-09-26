@@ -1,14 +1,26 @@
 import styles from "./styles.module.css";
 import Letter from "../Letter";
 
-export default function LettersUsed() {
+export type LettersUsedProps = {
+    value: string;
+    correct: boolean;
+}
+
+type Props = {
+    data: LettersUsedProps[];
+}
+
+export default function LettersUsed({ data }: Props) {
     return (
         <div className={styles.letterUsed}>
             <h5>Letras utilizadas:</h5>
 
             <div>
-                <Letter value="R" size="small" color="correct" />
-                <Letter value="X" size="small" color="wrong" />
+                {
+                    data.map(({ value, correct }) => (
+                        <Letter value={value} size="small" color={correct ? "correct" : "wrong"} />
+                    ))
+                }
             </div>
         </div>
     );
