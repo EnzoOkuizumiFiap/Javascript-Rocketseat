@@ -10,10 +10,10 @@ export default function Letter({ value = "", size = "default", color = "default"
     return (
         <div
             className={`
-            ${styles.letter}
-            ${size === "small" && styles.small}
-            ${color === "correct" && styles.correct}
-            ${color === "wrong" && styles.wrong}
+                ${styles.letter}
+                ${size === "small" && styles.letterSmall}
+                ${color === "correct" && styles.letterCorrect}
+                ${color === "wrong" && styles.letterWrong}
         `}>
             <span>{value}</span>
         </div>
